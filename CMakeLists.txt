@@ -11,24 +11,26 @@ if(NOT CMAKE_BUILD_TYPE)
     message("*** Build type not set.  defaulting to Release")
 endif()
 
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_options(
-        -g
-        -O0
-        -march=native
-        -fPIE
-        -Wno-changes-meaning # tbb 
-        -Wall
-    )
-else()
-    add_compile_options(
-        -O3
-        -g
-        -march=native
-        -fPIE
-        -Wno-changes-meaning # tbb
-        -Wall
-    )
+if(NOT MSVC)
+    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(
+            -g
+            -O0
+            -march=native
+            -fPIE
+            -Wno-changes-meaning # tbb 
+            -Wall
+        )
+    else()
+        add_compile_options(
+            -O3
+            -g
+            -march=native
+            -fPIE
+            -Wno-changes-meaning # tbb
+            -Wall
+        )
+    endif()
 endif()
 
 
