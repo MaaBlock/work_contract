@@ -4,12 +4,12 @@ add_library(work_contract
     ./work_contract_this.cpp
 )
 
-
-target_link_libraries(work_contract 
-    pthread
-    rt
-)
-
+if (NOT MSVC)
+    target_link_libraries(work_contract
+            pthread
+            rt
+    )
+endif ()
 
 target_include_directories(work_contract
 PUBLIC
